@@ -1,12 +1,12 @@
 package stepDefs;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.*;
 import pages.TestCenterPage;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static java.lang.Thread.sleep;
 
 public class TestCenterStepDefs {
@@ -68,7 +68,7 @@ public class TestCenterStepDefs {
             testCenterPage.radioFootball.shouldBe(checked);
         }
     }
-
+    //DropDown Step Definitions
     @Given("user enters {int} as year, {string} as month, {int} as day")
     public void user_enters_as_year_as_month_as_day(Integer year, String month, Integer day) throws InterruptedException {
 
@@ -78,6 +78,28 @@ public class TestCenterStepDefs {
         testCenterPage.month.selectOption(month); //Görünen metin ile seçtik
         sleep(2000);
         testCenterPage.day.selectOptionByValue(String.valueOf(day));
+        Configuration.holdBrowserOpen = true;
+    }
+    //JavaScript Alert Step Definitions
+
+    @And("user clicks on alert button")
+    public void user_clicks_on_alert_button() {
+       testCenterPage.promptButton.click();
+    }
+
+
+    @Then("user types {string} in the alert button and clicks Ok")
+    public void userTypesInTheAlertButtonAndClicksOk(String arg0) throws InterruptedException {
+        switchTo().alert().sendKeys(arg0);
+        sleep(2000);
+        switchTo().alert().accept();
+    }
+
+    @And("user verifies that {string} appears on the screen")
+    public void userVerifiesThatAppearsOnTheScreen(String arg0) {
+
+        testCenterPage.result.shouldHave(text(arg0));
+        System.out.println("Metin" + testCenterPage.result.getText());
         Configuration.holdBrowserOpen = true;
     }
 }

@@ -12,6 +12,7 @@ public class CommonStepDef {
     public void user_navigates_to(String googleHome) {
         open(googleHome);// Seleniden gelen open functionı
         // sleep(10000);//Selenide browser ı otomatik olarak kapotmasın diye basit bir sleep
+
     }
 
     @Then("user waits for {int} seconds")

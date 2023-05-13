@@ -30,5 +30,8 @@ public class TestCenterPage {
 
     public SelenideElement day = $(By.id("day"));
 
+    //JAvaScript Alertleri
+    public SelenideElement promptButton = $(By.xpath("//button[@onclick='jsPrompt()']"));
+    public  SelenideElement result = $(By.id("result"));
 
 }
