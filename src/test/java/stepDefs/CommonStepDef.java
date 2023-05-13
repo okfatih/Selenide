@@ -1,5 +1,7 @@
 package stepDefs;
 
+import com.codeborne.selenide.Configuration;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
@@ -26,15 +28,27 @@ public class CommonStepDef {
         back();
     }
 
-    @Then("user goes back to next page")
-    public void user_goes_back_to_next_page() {
+    @Then("user goes to next page")
+    public void user_goes_to_next_page() {
         forward();
+    }
+    @And("user refreshes the page")
+    public void userRefreshesThePage() {
+        refresh();
     }
 
     @Then("user keeps the page open")
     public void user_keeps_the_page_open() {
-        refresh();
+        /*
+        Default Selenide ayarlarında
+        Browser otomatik kapanmaktadır
+        Bunu önlemek için
+         */
+        Configuration.holdBrowserOpen=true;
+
     }
+
+
 }
 /*
 Selenide de navigasyon fonksyşonları

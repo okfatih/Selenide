@@ -20,4 +20,15 @@ public class TestCenterPage {
     public SelenideElement checkbox1 = $(By.id("box1"));
     public SelenideElement checkbox2 = $(By.id("box2"));
 
+    //Radio elementleri
+    public SelenideElement radioRed = $(By.id("red"));
+    public SelenideElement radioFootball = $(By.id("football"));
+
+    //DropDown elementleri
+    public SelenideElement year = $(By.id("year"));
+    public SelenideElement month = $(By.id("month"));
+
+    public SelenideElement day = $(By.id("day"));
+
+
 }
