@@ -2,11 +2,14 @@ package stepDefs;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.conditions.webdriver.Url;
+import io.cucumber.core.options.CurlOption;
 import io.cucumber.java.en.*;
 import pages.TestCenterPage;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.WebDriverRunner.url;
 import static java.lang.Thread.sleep;
 
 public class TestCenterStepDefs {
@@ -90,9 +93,11 @@ public class TestCenterStepDefs {
 
     @Then("user types {string} in the alert button and clicks Ok")
     public void userTypesInTheAlertButtonAndClicksOk(String arg0) throws InterruptedException {
+        Thread.sleep(1000);
         switchTo().alert().sendKeys(arg0);
-        sleep(2000);
+        Thread.sleep(2000);
         switchTo().alert().accept();
+       Thread.sleep(1000);
     }
 
     @And("user verifies that {string} appears on the screen")
@@ -101,5 +106,26 @@ public class TestCenterStepDefs {
         testCenterPage.result.shouldHave(text(arg0));
         System.out.println("Metin" + testCenterPage.result.getText());
         Configuration.holdBrowserOpen = true;
+    }
+
+    @Then("user switches to iframe {int}")
+    public void userSwitchesToIframe(int frame) {
+        switchTo().frame(frame-1); //Features files dan gelen 1 rakamını pass etti fakat index 0 dan başlar dolayısıyla -1 yaparsak 0.indexteki frame ulaşırız
+        
+    }
+
+    @And("user clicks on  back to techproeducation.com link")
+    public void userClicksOnBackToTechproeducationComLink() {
+        testCenterPage.iframeLink.click();
+        //Tıklayıp yeni bir sayfaya geçmemize rağmen
+        //driver hala ilk sayfada
+        System.out.println("Sayfa Urli" + url());;
+
+    }
+
+    @Then("user switches to window {int}")
+    public void userSwitchesToWindow(int targetWindowIndex) {
+        switchTo().window(targetWindowIndex-1); //Featuresdan buraya pass edilen değer 2. Arzu ettiğimiz window 1. indexte
+        System.out.println("Yeni sayfa urli " + url());
     }
 }

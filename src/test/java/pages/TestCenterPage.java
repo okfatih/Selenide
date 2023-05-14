@@ -34,4 +34,8 @@ public class TestCenterPage {
     public SelenideElement promptButton = $(By.xpath("//button[@onclick='jsPrompt()']"));
     public  SelenideElement result = $(By.id("result"));
 
+
+    //Iframe elementleri
+    public SelenideElement iframeLink = $(By.xpath("//a[@type='button']"));
+
 }
